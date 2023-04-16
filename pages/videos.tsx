@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
 import { generateApiUrl } from "../util/generateApiUrl";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 //const { VERK3: url } = process.env;
 //const URL = url + '/departments';
@@ -66,19 +68,23 @@ export default function Videos () {
     */
 
     return (
-        <section>
-          <h2>Myndbönd</h2>
-          {state === 'empty' && (<p>engin Myndbönd</p>)}
-          {state === 'error' && (<p>villa við að sækja Myndbönd</p>)}
-          {state === 'loading' && (<p>sæki myndbönd...</p>)}
-          <ul>
-            {state === 'data' && videos.map((video, i) => {
-              return (
-                <li key={i}>{video.title}</li>
-              )
-            })}
-          </ul>
-          <button><a href="/">Til baka</a></button>
+        <section >
+           <Header />
+            <div className="bg-gray-100 min-h-screen">
+              <h2>Myndbönd</h2>
+              {state === 'empty' && (<p>engin Myndbönd</p>)}
+              {state === 'error' && (<p>villa við að sækja Myndbönd</p>)}
+              {state === 'loading' && (<p>sæki myndbönd...</p>)}
+              <ul>
+                {state === 'data' && videos.map((video, i) => {
+                  return (
+                    <li key={i}>{video.title}</li>
+                  )
+                })}
+              </ul>
+              <button><a href="/">Til baka</a></button>
+            </div>
+          <Footer />
         </section>
       )
     }
