@@ -75,7 +75,7 @@ const SignupForm = () => {
                 <input id='email' type="text" value={email} onChange={onInputChangeEmail} />
             </p>
             <p>
-                <label htmlFor='password'>Name:</label>
+                <label htmlFor='password'>Password:</label>
                 <input id='password' type="password" value={password} onChange={onInputChangePassword} />
             </p>
         <button type="submit">Sign Up</button>
