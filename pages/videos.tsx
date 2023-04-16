@@ -1,74 +1,73 @@
-import { useState, useEffect } from "react"
-import { generateApiUrl } from "../util/generateApiUrl";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 
-//const { VERK3: url } = process.env;
-//const URL = url + '/departments';
-//const url = process.env.REACT_APP_API_URL;
-//const URL = `${url}/departments`;
+export default function Videos() {
+  const URL = "https://vef2-2023-h1-production-e699.up.railway.app/videos";
 
-export default function Videos () {
-    var err = '';
-    //console.log("url:", url);
-    //console.log("URL:", URL);
-    const URL = 'http://localhost:4000/videos';
-    // type State = 'empty' | 'data' | 'error' | 'loading'
-    const [state, setState] = useState('empty')
-    const [videos, setVideos] = useState([]);
+  const [state, setState] = useState("empty");
+  const [videos, setVideos] = useState<
+    {
+      id: number;
+      title: string;
+      description: string;
+      created: string;
+      duration: number;
+      poster: string;
+      video: string;
+      related: number[];
+    }[]
+  >([]);
 
-    useEffect(() => {
-        async function fetchData() {
-            await fetchVideos();
-        }
-        fetchData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+  useEffect(() => {
+    fetchVideos();
+  }, []);
 
-    async function fetchVideos() {
-        setState('loading')
-        try {
-            const response = await fetch(URL);
-            if (!response.ok) {
-                throw new Error('not ok');
-            }
-            const json = await response.json();
-            //console.log(json)
-            var rows = json.videos.rows;
-            /*rows.forEach(element => {
-                console.log(element.title);
-            });*/
-            setVideos(rows)
-            setState('data')
-        } catch (e) {
-            setState('error')
-            console.log(e);
-        }
+  async function fetchVideos() {
+    setState("loading");
+    try {
+      const response = await fetch(URL);
+      if (!response.ok) {
+        throw new Error("not ok");
+      }
+      const json = await response.json();
+      const rows = json.videos.rows;
+      if (rows.length === 0) {
+        setState("empty");
+        return;
+      }
+      setVideos(rows);
+      setState("data");
+    } catch (e) {
+      setState("error");
+      console.log(e);
     }
-    /*
-    if (state === 'data') {
-        return (
-            <ul>
-                {videos.map(vid => <li>{vid.title}</li>)}
-                
-            </ul>
-        )
-        
-    }
-    */
+  }
 
-    return (
-        <section>
-            <h2>Myndbönd</h2>
-            {state === 'empty' && (<p>engin Myndbönd</p>)}
-            {state === 'error' && (<p>villa við að sækja Myndbönd</p>)}
-            {state === 'loading' && (<p>sæki myndbönd...</p>)}
-            <ul>
-                {state === 'data' && videos.map((video, i) => {
-                    return (
-                        <li key={i}>{video.title}</li>
-                    )
-                })}
-            </ul>
-            
-        </section>
-    )
+  return (
+    <section className="min-h-screen">
+      <h2 className="text-center">Myndbönd</h2>
+      {state === "empty" && <p>engin Myndbönd</p>}
+      {state === "error" && <p>villa við að sækja Myndbönd</p>}
+      {state === "loading" && <p>sæki myndbönd...</p>}
+      <div>
+        <ul className="grid grid-cols-3 gap-4">
+          {state === "data" &&
+            videos.map((video, i) => {
+              return (
+                <li className="flex flex-col items-start" key={i}>
+                  <h3 className="mb-auto">{video.title}</h3>
+                  <Image
+                    src={video.poster}
+                    alt={`Poster for ${video.title}`}
+                    layout="responsive"
+                    width={500}
+                    height={281}
+                  />
+                </li>
+              );
+            })}
+        </ul>
+      </div>
+    </section>
+  );
 }
