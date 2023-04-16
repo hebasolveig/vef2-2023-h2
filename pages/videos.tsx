@@ -10,7 +10,7 @@ export default function Videos () {
     var err = '';
     //console.log("url:", url);
     //console.log("URL:", URL);
-    const URL = 'http://localhost:4000/videos';
+    const URL = generateApiUrl('videos');
     // type State = 'empty' | 'data' | 'error' | 'loading'
     const [state, setState] = useState('empty')
     const [videos, setVideos] = useState([]);
