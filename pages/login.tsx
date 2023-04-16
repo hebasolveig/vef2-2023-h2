@@ -7,10 +7,7 @@ export default function Login () {
     return (
         <>
             <Header/>
-            <div className="bg-gray-100 min-h-screen">
-                <h1>Hello World!</h1>
-                <button><a href="/">Til baka</a></button>
-            </div>
+            
             <h1>Sign Up Here!</h1>
             <SignupForm />
             <h1>Sign In Here!</h1>
