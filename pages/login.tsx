@@ -6,9 +6,9 @@ export default function Login () {
     return (
         <>
             <button><a href="/">Til baka</a></button>
-            <h1>Sign Up</h1>
+            <h1>Sign Up Here!</h1>
             <SignupForm />
-            <h1>Sign In</h1>
+            <h1>Sign In Here!</h1>
             <LoginForm />
 
         </>
