@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import React from 'react';
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { generateApiUrl } from "../../util/generateApiUrl";
