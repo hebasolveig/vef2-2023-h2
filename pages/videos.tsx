@@ -19,7 +19,7 @@ export default function Videos () {
     var err = '';
     //console.log("url:", url);
     //console.log("URL:", URL);
-    const URL = 'https://vef2-2023-h1-production-e699.up.railway.app/videos';
+    const URL = generateApiUrl('videos');
     // type State = 'empty' | 'data' | 'error' | 'loading'
     const [state, setState] = useState('empty')
   const [videos, setVideos] = useState<Video[]>([]);
