@@ -1,6 +1,9 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
+import { generateApiUrl } from "../../util/generateApiUrl";
 
 interface Video {
   id: number;
@@ -17,14 +20,13 @@ export default function VideoPage() {
   const router = useRouter();
   const { id } = router.query;
   const [video, setVideo] = useState<Video | null>(null);
+  const apiUrl = generateApiUrl("videos");
 
   useEffect(() => {
     if (id) {
       const fetchVideoData = async () => {
         try {
-          const response = await fetch(
-            `https://vef2-2023-h1-production-e699.up.railway.app/videos/${id}`
-          );
+          const response = await fetch(`${apiUrl}/${id}`);
           if (!response.ok) {
             throw new Error("not ok");
           }
@@ -38,7 +40,7 @@ export default function VideoPage() {
 
       fetchVideoData();
     }
-  }, [id]);
+  }, [apiUrl, id]);
 
   if (!video) {
     return <p>Loading...</p>;
@@ -46,6 +48,7 @@ export default function VideoPage() {
 
   return (
     <section>
+      <Header />
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <h2 className="text-4xl text-black mb-8">{video.title}</h2>
         <div style={{ width: "640px", height: "360px", position: "relative" }}>
@@ -59,10 +62,12 @@ export default function VideoPage() {
           </video>
         </div>
         <p className="text-black mt-8">{video.description}</p>
+      
+        <button className="text-white fixed left-0 bottom-0 m-4">
+          <Link href="/videos">Til baka</Link>
+        </button>
       </div>
-      <button>
-        <Link href="/videos">Til baka</Link>
-      </button>
+      <Footer />
     </section>
   );
 }

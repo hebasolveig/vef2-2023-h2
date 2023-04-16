@@ -77,9 +77,9 @@ export default function Videos() {
               })}
           </ul>
         </div>
-        <button className="text-black">
-          <Link href="/">Til baka</Link>
-        </button>
+        <button className="text-white fixed left-0 bottom-0 m-4">
+        <Link href="/videos">Til baka</Link>
+      </button>
       </div>
       <Footer />
     </section>
