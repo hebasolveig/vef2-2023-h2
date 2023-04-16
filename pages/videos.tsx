@@ -23,40 +23,42 @@ export default function Videos() {
   >([]);
 
   useEffect(() => {
+    async function fetchVideos() {
+      setState("loading");
+      try {
+        const URL = generateApiUrl("videos");
+        const response = await fetch(URL);
+        if (!response.ok) {
+          throw new Error("not ok");
+        }
+        const json = await response.json();
+        var rows = json.videos.rows;
+        if (rows.length === 0) {
+          setState("empty");
+          return;
+        }
+        setVideos(rows);
+        setState("data");
+      } catch (e) {
+        setState("error");
+        console.log(e);
+      }
+    }
+  
     fetchVideos();
   }, []);
-
-  async function fetchVideos() {
-    setState("loading");
-    try {
-      const response = await fetch(URL);
-      if (!response.ok) {
-        throw new Error("not ok");
-      }
-      const json = await response.json();
-      var rows = json.videos.rows;
-      if (rows.length === 0) {
-        setState("empty");
-        return;
-      }
-      setVideos(rows);
-      setState("data");
-    } catch (e) {
-      setState("error");
-      console.log(e);
-    }
-  }
+  
 
   return (
     <section>
       <Header />
       <div className="bg-gray-100 min-h-screen">
-        <h2 className="text-center text-4xl text-white mb-8">Myndbönd</h2>
+        <h2 className="text-center text-4xl text-black mb-8">Myndbönd</h2>
         {state === "empty" && <p>engin Myndbönd</p>}
         {state === "error" && <p>villa við að sækja Myndbönd</p>}
         {state === "loading" && <p>sæki myndbönd...</p>}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8">
-          <ul className="grid grid-cols-3 gap-4">
+          <ul className="grid grid-cols-3 gap-4 text-black">
             {state === "data" &&
               videos.map((video, i) => {
                 return (
@@ -75,7 +77,7 @@ export default function Videos() {
               })}
           </ul>
         </div>
-        <button>
+        <button className="text-black">
           <Link href="/">Til baka</Link>
         </button>
       </div>

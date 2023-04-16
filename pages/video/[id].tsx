@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface Video {
   id: number;
@@ -44,19 +45,24 @@ export default function VideoPage() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h2 className="text-4xl text-white mb-8">{video.title}</h2>
-      <div style={{ width: "640px", height: "360px", position: "relative" }}>
-        <video
-          src={video.video}
-          poster={video.poster}
-          style={{ width: "100%", height: "100%", objectFit: "contain" }}
-          controls
-        >
-          Your browser does not support the video element.
-        </video>
+    <section>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+        <h2 className="text-4xl text-black mb-8">{video.title}</h2>
+        <div style={{ width: "640px", height: "360px", position: "relative" }}>
+          <video
+            src={video.video}
+            poster={video.poster}
+            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+            controls
+          >
+            Your browser does not support the video element.
+          </video>
+        </div>
+        <p className="text-black mt-8">{video.description}</p>
       </div>
-      <p className="text-white mt-8">{video.description}</p>
-    </div>
+      <button>
+        <Link href="/videos">Til baka</Link>
+      </button>
+    </section>
   );
 }
