@@ -6,6 +6,15 @@ import { generateApiUrl } from "../util/generateApiUrl";
 //const url = process.env.REACT_APP_API_URL;
 //const URL = `${url}/departments`;
 
+interface Video {
+    id: number;
+    title: string;
+    description: string;
+    url: string;
+    created: string;
+    updated: string;
+  }
+
 export default function Videos () {
     var err = '';
     //console.log("url:", url);
@@ -13,7 +22,8 @@ export default function Videos () {
     const URL = generateApiUrl('videos');
     // type State = 'empty' | 'data' | 'error' | 'loading'
     const [state, setState] = useState('empty')
-    const [videos, setVideos] = useState([]);
+  const [videos, setVideos] = useState<Video[]>([]);
+
 
     useEffect(() => {
         async function fetchData() {
@@ -57,18 +67,18 @@ export default function Videos () {
 
     return (
         <section>
-            <h2>Myndbönd</h2>
-            {state === 'empty' && (<p>engin Myndbönd</p>)}
-            {state === 'error' && (<p>villa við að sækja Myndbönd</p>)}
-            {state === 'loading' && (<p>sæki myndbönd...</p>)}
-            <ul>
-                {state === 'data' && videos.map((video, i) => {
-                    return (
-                        <li key={i}>{video.title}</li>
-                    )
-                })}
-            </ul>
-            
+          <h2>Myndbönd</h2>
+          {state === 'empty' && (<p>engin Myndbönd</p>)}
+          {state === 'error' && (<p>villa við að sækja Myndbönd</p>)}
+          {state === 'loading' && (<p>sæki myndbönd...</p>)}
+          <ul>
+            {state === 'data' && videos.map((video, i) => {
+              return (
+                <li key={i}>{video.title}</li>
+              )
+            })}
+          </ul>
+          <button><a href="/">Til baka</a></button>
         </section>
-    )
-}
+      )
+    }
