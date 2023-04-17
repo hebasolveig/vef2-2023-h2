@@ -49,7 +49,6 @@ export default function VideoPage() {
 
   return (
     <section>
-      <Header />
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <h2 className="text-4xl text-black mb-8">{video.title}</h2>
         <div style={{ width: "640px", height: "360px", position: "relative" }}>
@@ -68,7 +67,6 @@ export default function VideoPage() {
           <Link href="/videos">Til baka</Link>
         </button>
       </div>
-      <Footer />
     </section>
   );
 }

@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import { generateApiUrl } from '@/util/generateApiUrl';
 import { useState } from 'react';
 
@@ -49,7 +50,13 @@ const LoginForm = () => {
                 }
             } else {
                 setState('success')
-                console.log(response);
+                var myJSON = await response.json()
+                Cookies.set('token', myJSON.token, {expires: myJSON.expiresIn})
+                Cookies.set('user', myJSON.user.username)
+                // redirect 
+                //router.push('/')
+                window.location.href = '/'
+                
             }
             
         } catch (e) {
