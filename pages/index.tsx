@@ -23,7 +23,7 @@ export default function Home() {
           <p className="mb-4 text-lg">Hér getur þú fundið allskonar skemmtileg video!</p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
             <Link href="/videos" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-md" rel="noopener">
-              Myndbandssíðaaa
+              Myndbandssíða
             </Link>
             <Link href="/login" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-md" rel="noopener">
               Loggaðu þig inn
