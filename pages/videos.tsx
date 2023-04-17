@@ -51,7 +51,6 @@ export default function Videos() {
 
   return (
     <section>
-      <Header />
       <div className="bg-gray-100 min-h-screen">
         <h2 className="text-center text-4xl text-black mb-8">Myndbönd</h2>
         {state === "empty" && <p>engin Myndbönd</p>}
@@ -81,7 +80,6 @@ export default function Videos() {
         <Link href="/videos">Til baka</Link>
       </button>
       </div>
-      <Footer />
     </section>
   );
 }
