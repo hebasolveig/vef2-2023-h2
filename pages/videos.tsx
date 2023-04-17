@@ -1,90 +1,87 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
+import Image from "next/image";
 import { generateApiUrl } from "../util/generateApiUrl";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Link from "next/link";
 
-//const { VERK3: url } = process.env;
-//const URL = url + '/departments';
-//const url = process.env.REACT_APP_API_URL;
-//const URL = `${url}/departments`;
+export default function Videos() {
+  const URL = generateApiUrl("videos");
 
-interface Video {
-    id: number;
-    title: string;
-    description: string;
-    url: string;
-    created: string;
-    updated: string;
-  }
+  const [state, setState] = useState("empty");
+  const [videos, setVideos] = useState<
+    {
+      id: number;
+      title: string;
+      description: string;
+      created: string;
+      duration: number;
+      poster: string;
+      video: string;
+      related: number[];
+    }[]
+  >([]);
 
-export default function Videos () {
-    var err = '';
-    //console.log("url:", url);
-    //console.log("URL:", URL);
-    const URL = generateApiUrl('videos');
-    // type State = 'empty' | 'data' | 'error' | 'loading'
-    const [state, setState] = useState('empty')
-  const [videos, setVideos] = useState<Video[]>([]);
-
-
-    useEffect(() => {
-        async function fetchData() {
-            await fetchVideos();
-        }
-        fetchData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
+  useEffect(() => {
     async function fetchVideos() {
-        setState('loading')
-        try {
-            const response = await fetch(URL);
-            if (!response.ok) {
-                throw new Error('not ok');
-            }
-            const json = await response.json();
-            //console.log(json)
-            var rows = json.videos.rows;
-            /*rows.forEach(element => {
-                console.log(element.title);
-            });*/
-            setVideos(rows)
-            setState('data')
-        } catch (e) {
-            setState('error')
-            console.log(e);
+      setState("loading");
+      try {
+        const URL = generateApiUrl("videos");
+        const response = await fetch(URL);
+        if (!response.ok) {
+          throw new Error("not ok");
         }
+        const json = await response.json();
+        var rows = json.videos.rows;
+        if (rows.length === 0) {
+          setState("empty");
+          return;
+        }
+        setVideos(rows);
+        setState("data");
+      } catch (e) {
+        setState("error");
+        console.log(e);
+      }
     }
-    /*
-    if (state === 'data') {
-        return (
-            <ul>
-                {videos.map(vid => <li>{vid.title}</li>)}
-                
-            </ul>
-        )
-        
-    }
-    */
+  
+    fetchVideos();
+  }, []);
+  
 
-    return (
-        <section >
-           <Header />
-            <div className="bg-gray-100 min-h-screen">
-              <h2>Myndbönd</h2>
-              {state === 'empty' && (<p>engin Myndbönd</p>)}
-              {state === 'error' && (<p>villa við að sækja Myndbönd</p>)}
-              {state === 'loading' && (<p>sæki myndbönd...</p>)}
-              <ul>
-                {state === 'data' && videos.map((video, i) => {
-                  return (
-                    <li key={i}>{video.title}</li>
-                  )
-                })}
-              </ul>
-              <button><a href="/">Til baka</a></button>
-            </div>
-          <Footer />
-        </section>
-      )
-    }
+  return (
+    <section>
+      <Header />
+      <div className="bg-gray-100 min-h-screen">
+        <h2 className="text-center text-4xl text-black mb-8">Myndbönd</h2>
+        {state === "empty" && <p>engin Myndbönd</p>}
+        {state === "error" && <p>villa við að sækja Myndbönd</p>}
+        {state === "loading" && <p>sæki myndbönd...</p>}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8">
+          <ul className="grid grid-cols-3 gap-4 text-black">
+            {state === "data" &&
+              videos.map((video, i) => {
+                return (
+                  <li key={i} className="flex flex-col items-start">
+                    <h3 className="mb-auto">{video.title}</h3>
+                    <Link href={`/video/[id]`} as={`/video/${video.id}`}>
+                      <Image
+                        src={video.poster}
+                        alt={`Poster for ${video.title}`}
+                        width={500}
+                        height={281}
+                      />
+                    </Link>
+                  </li>
+                );
+              })}
+          </ul>
+        </div>
+        <button className="text-white fixed left-0 bottom-0 m-4">
+        <Link href="/videos">Til baka</Link>
+      </button>
+      </div>
+      <Footer />
+    </section>
+  );
+}
