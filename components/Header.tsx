@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const Header = () => {
   return (
-    <header className="bg-gray-800 text-white flex justify-between items-center h-20 px-6">
+    <header className="bg-gray-800 text-white flex justify-between items-center h-20 px-6 flex-shrink-0">
       <Link href="/" className="text-xl font-semibold">
         Myndbandavefurinn
       </Link>
