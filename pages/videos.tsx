@@ -89,7 +89,7 @@ export default function Videos() {
     </div>
 
     <button className="fixed left-4 bottom-4 text-white bg-blue-500 hover:bg-blue-600 py-3 px-6 rounded-md">
-      <Link href="/videos">Til baka</Link>
+      <Link href="/">Til baka</Link>
     </button>
   </div>
 

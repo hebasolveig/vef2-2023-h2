@@ -63,7 +63,7 @@ export default function VideoPage() {
         </div>
         <p className="text-black mt-8">{video.description}</p>
       
-        <button className="text-white fixed left-0 bottom-0 m-4">
+        <button className="fixed left-4 bottom-4 text-white bg-blue-500 hover:bg-blue-600 py-3 px-6 rounded-md">
           <Link href="/videos">Til baka</Link>
         </button>
       </div>

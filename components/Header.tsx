@@ -17,7 +17,7 @@ const Header = () => {
   }, [])
 
   return (
-    <header className="bg-gray-800 text-white flex justify-between items-center h-20 px-6 flex-shrink-0">
+    <header className="bg-gray-800 text-white flex justify-between items-center h-20 px-6 flex-shrink-0 fixed top-0 left-0 w-full z-50">
       <Link href="/" className="text-xl font-semibold">
         Myndbandavefurinn
       </Link>
