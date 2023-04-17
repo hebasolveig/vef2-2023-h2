@@ -17,15 +17,15 @@ const Header = () => {
   }, [])
 
   return (
-    <header className="bg-gray-800 text-white flex justify-between items-center h-20 px-6">
+    <header className="bg-gray-800 text-white flex justify-between items-center h-20 px-6 flex-shrink-0">
       <Link href="/" className="text-xl font-semibold">
-        Videosíða
+        Myndbandavefurinn
       </Link>
       <nav>
         <ul className="flex list-none">
           <li className="mr-4">
             <Link href="/videos" className="text-white">
-              Videos
+                Myndbönd
             </Link>
           </li>
           {!logged&& (

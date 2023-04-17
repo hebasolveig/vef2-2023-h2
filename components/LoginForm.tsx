@@ -7,27 +7,30 @@ const LoginForm = () => {
     // states
     // '' | 'loading' | 'error' | 'success'
     const [state, setState] = useState('');
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState<{ msg: string }[]>([]);
 
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
 
+    
+
+
     // input change
-    const onInputChangeName = (e) => {
+    const onInputChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
-    }
-    const onInputChangePassword = (e) => {
+      }
+      const onInputChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
-    }
+      }
 
     // submit
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         
         createSecureServer(name, password);
     }
 
-    async function createSecureServer(myName, myPassword) {
+    async function createSecureServer(myName: string, myPassword: string) {
         setState('loading')
         try {
             const myBody = {
