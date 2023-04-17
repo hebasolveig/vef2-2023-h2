@@ -6,31 +6,31 @@ const SignupForm = () => {
     // states
     // '' | 'loading' | 'error' | 'success'
     const [state, setState] = useState('');
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState<{ msg: string }[]>([]);
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     // input change
-    const onInputChangeName = (e) => {
+    const onInputChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
     }
-    const onInputChangeEmail = (e) => {
+    const onInputChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
     }
-    const onInputChangePassword = (e) => {
+    const onInputChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
     }
 
     // submit
-    const handleSubmit = (e) => {
+    const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
         
         createSecureServer(name, email, password);
     }
 
-    async function createSecureServer(myName, myEmail, myPassword) {
+    async function createSecureServer(myName: string, myEmail: string, myPassword:string) {
         setState('loading')
         try {
             const myBody = {

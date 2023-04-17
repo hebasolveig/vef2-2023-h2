@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { generateApiUrl } from "../util/generateApiUrl";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import Link from "next/link";
 
 export default function Videos() {
@@ -51,8 +49,6 @@ export default function Videos() {
 
   return (
     <section>
-  <Header />
-
   <div className="bg-gray-100 min-h-screen">
     <h2 className="text-center text-4xl text-black mb-8 pt-8">Myndbönd</h2>
 
@@ -97,8 +93,6 @@ export default function Videos() {
     </button>
   </div>
 
-  <Footer />
 </section>
-
   );
 }
