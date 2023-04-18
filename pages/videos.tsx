@@ -98,8 +98,9 @@ export default function Videos() {
         method: "POST",
         body: formDataObj,
         headers: {
-          Authorization: `Bearer ${token}`,
-        },
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        }
       });
   
       console.log("response:", response);
