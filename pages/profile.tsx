@@ -25,8 +25,16 @@ export default function Profile () {
     
     return (
         <>
-            {state === 'loading' && (<p>loading...</p>)} 
-            {state === 'success' && (<h1>Welcome {user}!</h1>)}
+        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+            <div className="bg-white p-8 rounded-lg shadow-lg">
+                {state === 'loading' && (
+                <p className="text-center text-gray-500">loading...</p>
+                )} 
+                {state === 'success' && (
+                <h1 className="text-center text-gray-500">Welcome {user}!</h1>
+                )}
+            </div>
+        </div>
         </>
     )
 }

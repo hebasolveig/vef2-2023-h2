@@ -62,40 +62,43 @@ const SignupForm = () => {
         }
     }
 
-
-    return (
-        <>
-        <form onSubmit={handleSubmit}>
-            <p>
-                <label htmlFor='name'>Name:</label>
-                <input id='name' type="text" value={name} onChange={onInputChangeName} />
-            </p>
-            <p>
-                <label htmlFor='email'>Email:</label>
-                <input id='email' type="text" value={email} onChange={onInputChangeEmail} />
-            </p>
-            <p>
-                <label htmlFor='password'>Password:</label>
-                <input id='password' type="password" value={password} onChange={onInputChangePassword} />
-            </p>
-        <button type="submit">Sign Up</button>
+return (
+  <>
+    <form onSubmit={handleSubmit} className="w-96 mx-auto mt-6">
+      <div className="mb-4">
+        <label htmlFor='name' className="block text-gray-700 font-bold mb-2">Name:</label>
+        <input id='name' type="text" value={name} onChange={onInputChangeName} className="w-full px-3 py-2 placeholder-gray-300 border rounded-md shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+      </div>
+      <div className="mb-4">
+        <label htmlFor='email' className="block text-gray-700 font-bold mb-2">Email:</label>
+        <input id='email' type="text" value={email} onChange={onInputChangeEmail} className="w-full px-3 py-2 placeholder-gray-300 border rounded-md shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+      </div>
+      <div className="mb-4">
+        <label htmlFor='password' className="block text-gray-700 font-bold mb-2">Password:</label>
+        <input id='password' type="password" value={password} onChange={onInputChangePassword} className="w-full px-3 py-2 placeholder-gray-300 border rounded-md shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+      </div>
+      <button type="submit" className="w-full px-3 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
+        Sign Up
+      </button>
     </form>
     {state === 'error' && (
-        <div>
-            <p>náði ekki að búa til notenda</p>
-            <ul>
-                {errors.map((error, i) => {
-                    return (
-                        <li key={i}>{error.msg}</li>
-                    )
-                })}
-            </ul>
+        <div className="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+          <p className="font-bold mb-2">Náði ekki að búa til notanda</p>
+            {errors.map((error, i) => {
+              return (
+                <li key={i}>{error.msg}</li>
+              )
+            })}
         </div>
+      )}
+    {state === 'loading' && (
+      <p className="text-center mt-4">Býr til notanda...</p>
     )}
-    {state === 'loading' && (<p>bý til notenda...</p>)}
-    {state === 'success' && (<p>bjó til Notenda!</p>)}
-    </>
-    );
+    {state === 'success' && (
+      <p className="text-center mt-4 text-green-500 font-bold">Notandi búinn til!</p>
+    )}
+  </>
+);
 }
 
 export default SignupForm;
