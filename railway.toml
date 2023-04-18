@@ -1,0 +1,8 @@
+# railway.toml
+
+[build]
+builder = "nixpacks"
+
+[build.commands]
+setup = "npm run setup"
+dev = "npm run dev"
