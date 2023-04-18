@@ -54,28 +54,15 @@ const LoginForm = () => {
             } else {
                 setState('success')
                 var myJSON = await response.json()
-                const { user, token, expiresIn } = myJSON;
                 //const cookieString = `user=${encodeURIComponent(JSON.stringify(user))}; token=${encodeURIComponent(token)}; expires=${new Date(Date.now() + expiresIn * 1000).toUTCString()}`;
                 // set the cookie in the browser
                 //document.cookie = cookieString;
 
-                Cookies.set('token', encodeURIComponent(token), {expires: myJSON.expiresIn})
-                Cookies.set('user', encodeURIComponent(JSON.stringify(user)))
+                Cookies.set('token', myJSON.token, {expires: myJSON.expiresIn})
+                Cookies.set('user', JSON.stringify(myJSON.user))
                 // redirect 
                 //router.push('/')
-                //window.location.href = '/'
-                const upload_headers = {
-                  'Cookie': document.cookie
-                };
-
-                console.log(document.cookie)
-
-                const upload_response = await fetch(generateApiUrl('users/me'), {
-                  method: 'POST',
-                  headers: upload_headers
-                });
-
-                console.log(await upload_response.json())
+                window.location.href = '/'
 
                 
             }
