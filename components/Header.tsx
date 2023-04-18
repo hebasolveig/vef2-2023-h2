@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import React from 'react';
 
 const Header = () => {
   const [logged, setLogged] = useState(false);
