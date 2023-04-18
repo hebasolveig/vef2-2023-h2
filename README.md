@@ -29,7 +29,8 @@ lykilorð: 1234567890
 ```bash
 npm install
 ```
-Setja þarf **NEXT_PUBLIC_API_URL** í **.env** sem bendir á hopverkefni 1 okkar (eða annað verkefni sem er svipað). 
+Setja þarf **NEXT_PUBLIC_API_URL** í **.env** sem bendir á hopverkefni 1 okkar (eða annað verkefni sem er svipað).
+
 Í augnablinu er það commentað út í okkar env.
 
 Það er uppi á railway: [https://vef2-2023-h1-production-e699.up.railway.app/](https://vef2-2023-h1-production-e699.up.railway.app/).
