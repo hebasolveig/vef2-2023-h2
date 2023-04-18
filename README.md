@@ -12,7 +12,7 @@ Hrefna Karen Valgarðsdóttir (hkv5@hi.is) (github: applemuffinhead)
 
 Þetta er vefsíða sem heldur utan um  mynbönd.
 
-Það er hægt að búa til account en ekki hægt að setja neitt inní gagnagrunn. Við vorum að lenda í vandamáli með að gera þap. 
+Það er hægt að búa til account en ekki hægt að setja neitt inní gagnagrunn. Við vorum að lenda í vandamáli með að gera það. 
 
 Eini sem að ætti að geta sett upp myndböndum (hefði það virkað) er admin.
 
