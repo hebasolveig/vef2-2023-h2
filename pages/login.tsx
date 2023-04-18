@@ -1,6 +1,3 @@
-import { useState, useEffect } from "react"
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import SignupForm from "@/components/SignupForm"
 import LoginForm from "@/components/LoginForm"
 export default function Login () {

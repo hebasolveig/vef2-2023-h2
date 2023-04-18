@@ -1,4 +1,5 @@
 import Cookies from "js-cookie"
+import {myJSON} from '@/lib/myJSON'
 import { useEffect, useState } from "react";
 
 export default function Profile () {
@@ -7,7 +8,15 @@ export default function Profile () {
     // 'loading' | 'success'
     const [state, setState] = useState('loading');
 
-    const [user, setUser] = useState('');
+    const [user, setUser] = useState<myJSON>({
+        id: 0,
+        username: "",
+        email: "",
+        password: "",
+        admin: false,
+        created: "",
+        updated: ""
+    });
     const [token, setToken] = useState('');
 
     useEffect(() => {
@@ -17,7 +26,6 @@ export default function Profile () {
             setUser(JSON.parse(userCookie))
             setToken(tokenCookie)
             setState('success')
-            console.log(user)
         }
         else {
             window.location.href = 'login'

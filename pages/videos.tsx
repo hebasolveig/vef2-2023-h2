@@ -29,7 +29,7 @@ export default function Videos() {
     async function fetchVideos() {
       setState("loading");
       try {
-        //const URL = generateApiUrl("videos");
+        const URL = generateApiUrl("videos");
         const response = await fetch(URL);
         if (!response.ok) {
           throw new Error("not ok");
