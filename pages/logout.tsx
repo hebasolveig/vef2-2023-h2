@@ -16,8 +16,14 @@ const Logout = () => {
     
     return (
         <>
-            {state === 'loading' && (<p>loading...</p>)} 
-            {state === 'success' && (<p>logging out...</p>)}
+        <div className="bg-gray-100 min-h-screen pt-20">
+            {state === 'loading' && (
+                <p className="text-center text-gray-500">loading...</p>
+            )} 
+            {state === 'success' && (
+                <p className="text-center text-gray-500">logging out...</p>
+            )}
+        </div>
         </>
     )
 }

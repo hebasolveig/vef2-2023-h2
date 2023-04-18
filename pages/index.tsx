@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   return (
-    <main className="bg-gray-100 min-h-screen">
+    <main className="bg-gray-100 min-h-screen pt-20">
     <div className="relative h-screen">
       <Image
         src="https://res.cloudinary.com/dyktbr2ns/image/upload/v1681754266/thomas-william-4qGbMEZb56c-unsplash_ak1uku.jpg"
